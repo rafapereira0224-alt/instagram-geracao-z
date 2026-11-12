@@ -1,0 +1,821 @@
+
+/* ==================================================
+   INSTAGRAM GERAÇÃO Z — PREMIUM STORIES
+   STORYVIEWER.CSS
+================================================== */
+
+/* =====================================
+   01 — FUNDO DO VISUALIZADOR
+===================================== */
+
+.story-viewer-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background:
+    radial-gradient(
+      circle at 50% 30%,
+      rgba(125, 45, 160, 0.13),
+      transparent 55%
+    ),
+    rgba(3, 4, 9, 0.97);
+
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* =====================================
+   02 — JANELA PRINCIPAL
+===================================== */
+
+.story-viewer {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  max-width: 420px;
+  height: min(780px, 91dvh);
+
+  overflow: hidden;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+
+  background: #11121a;
+
+  box-shadow:
+    0 35px 110px rgba(0, 0, 0, 0.8),
+    0 0 75px rgba(150, 47, 191, 0.12);
+
+  animation: premium-story-enter 0.38s
+    cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+.story-viewer::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  z-index: 1;
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  box-shadow: inset 0 0 45px rgba(0, 0, 0, 0.25);
+}
+
+@keyframes premium-story-enter {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* =====================================
+   03 — IMAGEM HISTÓRICA
+===================================== */
+
+.story-viewer-image {
+  position: absolute;
+  inset: 0;
+
+  z-index: -2;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
+
+  filter: brightness(0.83) saturate(1.06);
+
+  animation: story-image-zoom 8s ease-out both;
+}
+
+@keyframes story-image-zoom {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(1.065);
+  }
+}
+
+/* =====================================
+   04 — DEGRADÊ DE LEGIBILIDADE
+===================================== */
+
+.story-viewer-shade {
+  position: absolute;
+  inset: 0;
+
+  z-index: -1;
+
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.83) 0%,
+    rgba(0, 0, 0, 0.32) 20%,
+    rgba(0, 0, 0, 0.08) 40%,
+    rgba(0, 0, 0, 0.50) 65%,
+    rgba(0, 0, 0, 0.97) 100%
+  );
+
+  pointer-events: none;
+}
+
+/* =====================================
+   05 — BARRAS DE PROGRESSO
+===================================== */
+
+.story-progress-container {
+  position: absolute;
+
+  top: 13px;
+  left: 14px;
+  right: 14px;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.story-progress-track {
+  flex: 1;
+
+  height: 3px;
+
+  overflow: hidden;
+  border-radius: 20px;
+
+  background: rgba(255, 255, 255, 0.33);
+
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.story-progress-fill {
+  width: 0;
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: linear-gradient(
+    90deg,
+    #ffffff,
+    #ffdfef
+  );
+
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.35);
+
+  transition: width 0.1s linear;
+}
+
+/* =====================================
+   06 — CABEÇALHO
+===================================== */
+
+.story-viewer-header {
+  position: absolute;
+
+  top: 31px;
+  left: 17px;
+  right: 17px;
+
+  z-index: 10;
+
+  display: flex;
+  align-items: center;
+
+  gap: 11px;
+}
+
+/* AVATAR */
+
+.story-viewer-avatar {
+  width: 41px;
+  height: 41px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  border: 2px solid rgba(255, 255, 255, 0.86);
+  border-radius: 50%;
+
+  background: linear-gradient(
+    45deg,
+    #feda75,
+    #fa7e1e,
+    #d62976,
+    #962fbf
+  );
+
+  color: #fff;
+
+  font-size: 19px;
+  font-weight: 900;
+
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* USUÁRIO */
+
+.story-viewer-user {
+  display: flex;
+  flex-direction: column;
+
+  flex: 1;
+  min-width: 0;
+
+  gap: 3px;
+}
+
+.story-viewer-user strong {
+  color: #fff;
+
+  font-size: 13px;
+  font-weight: 850;
+
+  text-shadow: 0 2px 8px #000;
+}
+
+.story-viewer-user span {
+  color: rgba(255, 255, 255, 0.78);
+
+  font-size: 11px;
+  font-weight: 550;
+
+  text-shadow: 0 2px 5px #000;
+}
+
+/* =====================================
+   07 — PAUSAR E CONTINUAR
+===================================== */
+
+.story-pause-button {
+  width: 39px;
+  height: 39px;
+
+  flex-shrink: 0;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.3);
+
+  color: white;
+  font-size: 20px;
+
+  cursor: pointer;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.story-pause-button:hover {
+  transform: scale(1.08);
+  background: rgba(255, 255, 255, 0.17);
+}
+
+.story-pause-button:active {
+  transform: scale(0.95);
+}
+
+/* =====================================
+   08 — CONTEÚDO HISTÓRICO
+===================================== */
+
+.story-viewer-content {
+  position: absolute;
+
+  left: 0;
+  right: 0;
+  bottom: 62px;
+
+  z-index: 5;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  gap: 14px;
+  padding: 28px;
+
+  animation: story-content-enter 0.4s ease both;
+}
+
+@keyframes story-content-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ANO */
+
+.story-year {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 8px 16px;
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 30px;
+
+  background: linear-gradient(
+    115deg,
+    #e1306c,
+    #9b3fd4
+  );
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 1px;
+
+  box-shadow: 0 5px 20px rgba(225, 48, 108, 0.25);
+}
+
+/* TÍTULO */
+
+.story-viewer-content h2 {
+  max-width: 100%;
+
+  color: #fff;
+
+  font-size: clamp(24px, 3vw, 34px);
+  font-weight: 900;
+
+  line-height: 1.17;
+  letter-spacing: -1px;
+
+  overflow-wrap: anywhere;
+
+  text-shadow:
+    0 3px 12px rgba(0, 0, 0, 0.85),
+    0 0 25px rgba(0, 0, 0, 0.3);
+}
+
+/* EXPLICAÇÃO */
+
+.story-viewer-content p {
+  max-width: 100%;
+  max-height: 175px;
+
+  overflow-y: auto;
+  overscroll-behavior: contain;
+
+  color: #f3f3f7;
+
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.85;
+
+  text-shadow: 0 2px 9px #000;
+
+  scrollbar-width: thin;
+  scrollbar-color: #a0a0a8 transparent;
+}
+
+/* CATEGORIA */
+
+.story-category {
+  display: inline-flex;
+  align-items: center;
+
+  max-width: 100%;
+
+  padding: 8px 13px;
+
+  border: 1px solid rgba(255, 255, 255, 0.19);
+  border-radius: 25px;
+
+  background: rgba(10, 10, 17, 0.52);
+
+  color: #ffd1e8;
+
+  font-size: 11px;
+  font-weight: 800;
+
+  backdrop-filter: blur(8px);
+}
+
+/* =====================================
+   09 — SETAS DE NAVEGAÇÃO
+===================================== */
+
+.story-viewer-navigation {
+  position: absolute;
+  inset: 0;
+
+  z-index: 6;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 10px;
+
+  pointer-events: none;
+}
+
+.story-viewer-navigation button {
+  width: 39px;
+  height: 39px;
+
+  display: grid;
+  place-items: center;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+
+  background: rgba(0, 0, 0, 0.48);
+  color: #fff;
+
+  font-size: 30px;
+  line-height: 1;
+
+  cursor: pointer;
+  pointer-events: auto;
+
+  backdrop-filter: blur(8px);
+
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
+}
+
+.story-viewer-navigation button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.24);
+  transform: scale(1.1);
+}
+
+.story-viewer-navigation button:active:not(:disabled) {
+  transform: scale(0.94);
+}
+
+.story-viewer-navigation button:disabled {
+  opacity: 0.2;
+  cursor: not-allowed;
+}
+
+/* =====================================
+   10 — CONTADOR
+===================================== */
+
+.story-viewer-counter {
+  position: absolute;
+
+  bottom: 22px;
+  left: 50%;
+
+  z-index: 7;
+
+  transform: translateX(-50%);
+
+  display: grid;
+  place-items: center;
+
+  min-width: 60px;
+  padding: 7px 15px;
+
+  border: 1px solid rgba(255, 255, 255, 0.13);
+  border-radius: 25px;
+
+  background: rgba(0, 0, 0, 0.55);
+
+  color: white;
+
+  font-size: 12px;
+  font-weight: 800;
+
+  backdrop-filter: blur(10px);
+}
+
+/* =====================================
+   11 — BOTÃO FECHAR
+===================================== */
+
+.story-viewer-close {
+  position: fixed;
+
+  top: 22px;
+  right: 25px;
+
+  z-index: 2010;
+
+  display: grid;
+  place-items: center;
+
+  width: 43px;
+  height: 43px;
+
+  padding: 0;
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 50%;
+
+  background: rgba(30, 30, 40, 0.8);
+
+  color: white;
+
+  font-size: 33px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.25s ease,
+    background 0.25s ease;
+}
+
+.story-viewer-close:hover {
+  background: rgba(225, 48, 108, 0.35);
+  transform: rotate(90deg);
+}
+
+/* =====================================
+   12 — FOCO E ACESSIBILIDADE
+===================================== */
+
+.story-pause-button:focus-visible,
+.story-viewer-navigation button:focus-visible,
+.story-viewer-close:focus-visible {
+  outline: 2px solid #e9a8ff;
+  outline-offset: 4px;
+}
+
+/* =====================================
+   13 — TABLETS
+===================================== */
+
+@media (max-width: 768px) {
+  .story-viewer-backdrop {
+    padding: 16px;
+  }
+
+  .story-viewer {
+    max-width: 390px;
+    height: min(720px, 92dvh);
+  }
+
+  .story-viewer-content {
+    padding: 23px;
+  }
+}
+
+/* =====================================
+   14 — CELULARES
+===================================== */
+
+@media (max-width: 600px) {
+  .story-viewer-backdrop {
+    padding: 0;
+    background: #000;
+  }
+
+  .story-viewer {
+    width: 100%;
+    max-width: none;
+
+    height: 100dvh;
+    min-height: 0;
+
+    border: none;
+    border-radius: 0;
+
+    box-shadow: none;
+    animation: none;
+  }
+
+  .story-progress-container {
+    top: max(12px, env(safe-area-inset-top));
+    left: 12px;
+    right: 12px;
+  }
+
+  .story-viewer-header {
+    top: calc(max(12px, env(safe-area-inset-top)) + 17px);
+    left: 13px;
+    right: 56px;
+  }
+
+  .story-viewer-avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 17px;
+  }
+
+  .story-viewer-user strong {
+    font-size: 12px;
+  }
+
+  .story-viewer-close {
+    position: absolute;
+
+    top: calc(max(12px, env(safe-area-inset-top)) + 17px);
+    right: 12px;
+
+    width: 35px;
+    height: 35px;
+
+    font-size: 28px;
+
+    border: none;
+    background: transparent;
+  }
+
+  .story-viewer-content {
+    bottom: calc(58px + env(safe-area-inset-bottom));
+
+    gap: 12px;
+    padding: 22px;
+  }
+
+  .story-viewer-content h2 {
+    font-size: clamp(24px, 6.3vw, 31px);
+  }
+
+  .story-viewer-content p {
+    max-height: 190px;
+    font-size: 13px;
+  }
+
+  .story-viewer-navigation {
+    padding: 0 8px;
+  }
+
+  .story-viewer-navigation button {
+    width: 35px;
+    height: 35px;
+    font-size: 27px;
+  }
+
+  .story-viewer-counter {
+    bottom: calc(16px + env(safe-area-inset-bottom));
+  }
+}
+
+/* =====================================
+   15 — TELAS BAIXAS
+===================================== */
+
+@media (max-height: 650px) {
+  .story-viewer-content {
+    bottom: 49px;
+    gap: 8px;
+    padding: 17px;
+  }
+
+  .story-viewer-content h2 {
+    font-size: 23px;
+  }
+
+  .story-viewer-content p {
+    max-height: 90px;
+    font-size: 12px;
+  }
+
+  .story-year {
+    padding: 6px 12px;
+  }
+
+  .story-category {
+    padding: 6px 10px;
+  }
+}
+
+/* =====================================
+   16 — MOVIMENTO REDUZIDO
+===================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .story-viewer,
+  .story-viewer-image,
+  .story-viewer-content {
+    animation: none !important;
+  }
+
+  .story-progress-fill,
+  .story-pause-button,
+  .story-viewer-navigation button,
+  .story-viewer-close {
+    transition: none !important;
+  }
+}
+
+
+/* ==========================================
+   GERAÇÃO Z — CONTROLES DE TOQUE
+========================================== */
+
+/* ÁREAS TRANSPARENTES DE NAVEGAÇÃO */
+
+.story-touch-controls {
+  display: none;
+}
+
+/* DISPOSITIVOS COM TOQUE */
+
+@media (hover: none) and (pointer: coarse) {
+  .story-touch-controls {
+    position: absolute;
+
+    top: 95px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    z-index: 2;
+
+    display: flex;
+
+    pointer-events: none;
+  }
+
+  .story-touch-controls button {
+    flex: 1;
+
+    height: 55%;
+    padding: 0;
+
+    border: none;
+    background: transparent;
+
+    cursor: pointer;
+    pointer-events: auto;
+
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  .story-touch-controls button:disabled {
+    pointer-events: none;
+  }
+
+  /* Mantém os controles visíveis acessíveis */
+
+  .story-viewer-header {
+    z-index: 10;
+  }
+
+  .story-viewer-content {
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .story-viewer-content p {
+    pointer-events: auto;
+  }
+
+  .story-viewer-navigation {
+    z-index: 6;
+  }
+
+  .story-viewer-counter {
+    z-index: 7;
+  }
+}
+
+/* TELAS PEQUENAS */
+
+@media (max-width: 480px) {
+  .story-touch-controls {
+    top: 85px;
+  }
+
+  .story-touch-controls button {
+    height: 48%;
+  }
+}
