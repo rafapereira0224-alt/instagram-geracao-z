@@ -12,7 +12,7 @@ const professorPadrao = {
   id: "bruna",
   nome: "Professora Bruna",
   especialidade: "Inglês",
-  imagem: "/bruna.png",
+  imagem: `${import.meta.env.BASE_URL}bruna.png`,
   cor: "#a855f7",
 };
 

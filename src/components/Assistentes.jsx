@@ -15,7 +15,7 @@ const professores = [
     especialidade: "Inglês",
     descricao:
       "Aprenda inglês de um jeito divertido e descubra sua influência nos jogos, filmes, músicas e na internet.",
-    imagem: "/bruna.png",
+    imagem: `${import.meta.env.BASE_URL}bruna.png`,
     cor: "#a855f7",
     emoji: "🇬🇧",
   },
@@ -26,7 +26,7 @@ const professores = [
     especialidade: "História e Sociologia",
     descricao:
       "Explore os acontecimentos históricos, as transformações sociais e a cultura que marcaram uma geração.",
-    imagem: "/Grace.png",
+    imagem: `${import.meta.env.BASE_URL}Grace.png`,
     cor: "#10b981",
     emoji: "🌍",
   },
@@ -37,7 +37,7 @@ const professores = [
     especialidade: "Física",
     descricao:
       "Descubra a ciência por trás das tecnologias, dos movimentos, da energia e das grandes descobertas.",
-    imagem: "/Allan.png",
+    imagem: `${import.meta.env.BASE_URL}Allan.png`,
     cor: "#3b82f6",
     emoji: "⚛️",
   },

@@ -9,7 +9,7 @@
    public/posts/nome-do-arquivo.jpg
 ========================================= */
 
-export const postsData = [
+const rawPostsData = [
   // =====================================
   // 2012
   // =====================================
@@ -650,3 +650,14 @@ export const postsData = [
     likes: 11497,
   },
 ]
+
+
+/* =========================================
+   CAMINHOS DAS IMAGENS
+   Compatível com GitHub Pages e Vercel
+========================================= */
+
+export const postsData = rawPostsData.map((post) => ({
+  ...post,
+  image: `${import.meta.env.BASE_URL}${post.image.replace(/^\/+/, "")}`,
+}));
